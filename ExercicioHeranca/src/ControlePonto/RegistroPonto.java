@@ -14,26 +14,17 @@ import java.time.LocalDateTime;
 public class RegistroPonto {
     
     private long idRegPonto;
-    private String func;
-    private String nome;
+    private Funcionario func;
     private LocalDate dataRegistro; 
     private LocalDateTime horaEntrada;
     private LocalDateTime horaSaida;
 
-    public String getFunc() {
+    public Funcionario getFunc() {
         return func;
     }
 
-    public void setFunc(String func) {
+    public void setFunc(Funcionario func) {
         this.func = func;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public long getIdRegPonto() {

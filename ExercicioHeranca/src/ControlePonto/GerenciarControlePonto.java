@@ -193,7 +193,8 @@ public class GerenciarControlePonto {
 
     public void regEntrada() {
         int opc = 0;
-        String nome;
+        String funcao;
+        int id = 0 ;
         RegistroPonto ponto = new RegistroPonto();
         System.out.print("ID Ponto: ");
         ponto.setIdRegPonto(Long.parseLong(sc.nextLine()));
@@ -203,20 +204,39 @@ public class GerenciarControlePonto {
         System.out.println("3.Secretaria");
         System.out.println("Opção: ");
         opc = Integer.parseInt(sc.nextLine());
-        System.out.println("Nome funcionario: ");
-        nome = sc.nextLine();
         switch (opc) {
             case 1:
-                ponto.setFunc("Gerente");
-                ponto.setNome(nome);
+                funcao = "Gerente";
+                System.out.println("Entre com o ID do Gerente: ");
+                 Integer.parseInt(sc.nextLine());
+                for(Gerente g:gerentes){
+                if(id == g.getIdFunc()){
+                ponto.setFunc(g);          
+                break;
+                }
+                }
                 break;
             case 2:
-                ponto.setFunc("Operador");
-                ponto.setNome(nome);
+                funcao = "Operador";
+                System.out.println("Entre com o ID do Operador: ");
+                id = Integer.parseInt(sc.nextLine());
+                for(Operador o:operadores){
+                if(id == o.getIdFunc()){
+                ponto.setFunc(o);          
+                break;
+                }
+                }
                 break;
             case 3:
-                ponto.setFunc("Secretaria");
-                ponto.setNome(nome);
+                funcao = "Secretaria";
+                System.out.println("Entre com o ID da Secretaria: ");
+                id = Integer.parseInt(sc.nextLine());
+                for(Secretaria s:secretarias){
+                if(id == s.getIdFunc()){
+                ponto.setFunc(s);          
+                break;
+                }
+                }
                 break;
         }
         LocalDate dataRegistro = LocalDate.now();
@@ -281,8 +301,8 @@ public class GerenciarControlePonto {
 
     public void listarPontos() {
         for (RegistroPonto rp : pontos) {
-
-            System.out.println("Funcionario: " + rp.getFunc() + " " + rp.getNome());
+            
+            System.out.println("Funcionario: " + rp.getFunc().getClass().getSimpleName() +' '+rp.getFunc().getNome());
             System.out.println("Data Registro: " + rp.getDataRegistro());
             System.out.println("Horario Entrada: " + rp.getHoraEntrada());
             System.out.println("Horario Saida: " + rp.getHoraSaida());
